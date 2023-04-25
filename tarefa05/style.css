@@ -1,0 +1,38 @@
+@keyframes walk {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.person {
+  width: 300px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+.person img {
+  border-radius: 20px;
+  animation: walk 0.2s infinite linear;
+}
+.person img:hover {
+  animation-play-state: paused;
+}
+.person::before {
+  width: 70px;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  background-color: white;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.person::after {
+  width: 75px;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  background-color: white;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}/*# sourceMappingURL=style.css.map */
