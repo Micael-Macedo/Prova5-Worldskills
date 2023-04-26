@@ -13,12 +13,7 @@
     //create cross
     //x
     imageline($img,0, ($width / 2) ,$width, $height/ 2,$cross);
-    $textValue = -50;
-    // for ($i=0; $i < $width; $i +=  100) { 
-        // imagettftext($img, 18, 0, 100, $height / 2 - 10, $text, 'arial.ttf', $textValue);
-        // $textValue += 10;
-    // }
-    // Define o caminho para o arquivo de fonte TrueType
+
     //y
     imageline($img, $width / 2 , 0, $width/ 2, $height ,$cross);
 
@@ -35,9 +30,19 @@
 
     for ($x = $x_min; $x <= $x_max; $x += $delta_x) {
         $y = ($a * pow($x, 2)) + ($b * $x) + $c;
-        $y_pixel = $height/2 - $y*10;
-        imagesetpixel($img,($width / 2 + $x * 50), $y_pixel, $red);
+        $y_pixel = $height / 2 - $y * 10;
+        $x_pixel = $width / 2 + $x * 10;
+        $points[] = array($x_pixel, $y_pixel);
     }
+
+    foreach ($points as $i => $point) {
+        if ($i > 0) {
+            $prev_point = $points[$i-1];
+            imagesetthickness($img, 3);
+            imageline($img, $prev_point[0], $prev_point[1], $point[0], $point[1], $red);
+        }
+    }
+
     header("Content-Type: image/png");
     imagepng($img);
     imagedestroy($img);
