@@ -11,13 +11,14 @@
 }
 .person img {
   border-radius: 20px;
-  animation: walk 0.2s infinite linear;
-}
-.person img:hover {
+  animation: walk 1s infinite steps(6);
   animation-play-state: paused;
 }
+.person img:hover {
+  animation-play-state: running;
+}
 .person::before {
-  width: 70px;
+  width: 20px;
   height: 100%;
   content: " ";
   position: absolute;
@@ -27,7 +28,7 @@
   z-index: 2;
 }
 .person::after {
-  width: 75px;
+  width: 60px;
   height: 100%;
   content: " ";
   position: absolute;
