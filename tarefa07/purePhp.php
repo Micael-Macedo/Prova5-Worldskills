@@ -14,13 +14,20 @@ $red = imagecolorallocate($img, 255, 0, 0);
 //create cross
 //x
 imageline($img, 0, ($width / 2), $width, $height / 2, $cross);
+$font_file = 'C:\Windows\Fonts\AdobeHebrew-Regular.otf';
+
 $textXValue = -50;
 for ($i=0; $i <= $width; $i += 95) { 
     imagettftext($img, 18, 0, $i, $height / 2 - 10, $text_color, $font_file, $textXValue);
     $textXValue += 10;
 }
-$textValue = -50;
-$font_file = 'C:\xampp\htdocs\fonts\roboto\Roboto-Medium.ttf';
+$textYValue = 50;
+for ($i=0; $i <= $width; $i += 95) { 
+    if($textYValue !== 0){
+        imagettftext($img, 18, 0, $width / 2 - 50, $i + 15, $text_color, $font_file, $textYValue);
+    }
+    $textYValue -= 10;
+}
 
 $font_size = 24;
 
@@ -54,10 +61,10 @@ for ($x = $x_min; $x <= $x_max; $x += $delta_x) {
     $points[] = array($x_pixel, $y_pixel);
 }
 
+imagesetthickness($img, 3);
 foreach ($points as $i => $point) {
     if ($i > 0) {
         $prev_point = $points[$i - 1];
-        imagesetthickness($img, 3);
         imageline($img, $prev_point[0], $prev_point[1], $point[0], $point[1], $red);
     }
 }
