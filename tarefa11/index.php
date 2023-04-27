@@ -26,13 +26,30 @@
         <button>Enviar</button>
     </form>
     <button onclick="baixarDados()">Baixar Dados</button>
+    <div class="users"></div>
+
     <script>
         async function baixarDados(){
             let users = await fetch("api.php").then(r => {
                 return r.json()
             })
             .catch(e => console.log(e))
-            console.log(users)
+            users.forEach(user => {
+                console.log(user);
+                $(".users").append(`
+                <div class="user">
+                    <p class="name">
+                        ${user.Nome}
+                    </p>
+                    <p class="idade">
+                        ${user.Idade}
+                    </p>
+                    <p class="email">
+                        ${user.Email}
+                    </p>
+                </div>
+                `)
+            });
         }
     </script>
 </body>
